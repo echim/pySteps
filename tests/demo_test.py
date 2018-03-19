@@ -1,5 +1,5 @@
 import pyautogui as gui
-from helpers.imagesearch import *
+from helpers.image_search import *
 import webbrowser as browser
 import pytest
 

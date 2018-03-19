@@ -13,6 +13,7 @@ py==1.5.2
 PyAutoGUI==0.9.36
 PyMsgBox==1.0.6
 PyScreeze==0.1.13
+pytesseract==0.2.0
 pytest==3.4.2
 python3-xlib==0.15
 PyTweening==1.0.3

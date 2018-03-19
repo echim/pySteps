@@ -1,8 +1,17 @@
-import cv2
 import numpy as np
 import pyautogui
 import random
 import time
+from helpers.image_remove_noise import process_image_for_ocr
+
+try:
+    import Image
+except ImportError:
+    from PIL import Image
+import pytesseract
+import cv2
+
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
 
 '''
 
@@ -59,6 +68,25 @@ def imagesearcharea(image, x1, y1, x2, y2, precision=0.8, im=None):
     if max_val < precision:
         return [-1, -1]
     return max_loc
+
+
+def imagetotext(text, debug):
+    screenWidth, screenHeight = pyautogui.size()
+    screencapture = region_grabber(region=(130, 43, screenWidth / 2, 70))
+    img_array = np.array(screencapture)
+    img_gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
+
+    # print(pytesseract.image_to_string(Image.fromarray(imgarray)))
+    # print(pytesseract.image_to_boxes(Image.fromarray(imgarray)))
+    print(pytesseract.image_to_data(Image.fromarray(img_array)))
+    screencapture.save('./debug.png')
+
+    print(pytesseract.image_to_data(Image.fromarray(img_gray)))
+    cv2.imwrite("./debug_gray.png", img_gray)
+
+    optimized_ocr_image = process_image_for_ocr('./debug.png')
+    cv2.imwrite("./debug_ocr_ready.png", optimized_ocr_image)
+    print(pytesseract.image_to_data(Image.fromarray(optimized_ocr_image)))
 
 
 '''
