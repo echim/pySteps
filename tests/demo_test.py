@@ -20,8 +20,8 @@ def test_with_debug():
 
 
 def test_dummy():
-    browser.register('firefox', None, browser.GenericBrowser('firefox'), 1)
-    browser.get('firefox').open('https://stackoverflow.com')
+    # browser.register('firefox', None, browser.GenericBrowser('firefox'), 1)
+    # browser.get('firefox').open('https://stackoverflow.com')
     gui.FAILSAFE = False
 
     screenWidth, screenHeight = gui.size()

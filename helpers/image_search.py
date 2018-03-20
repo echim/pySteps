@@ -2,7 +2,9 @@ import numpy as np
 import pyautogui
 import random
 import time
-from helpers.image_remove_noise import process_image_for_ocr
+import os
+import sys
+from .image_remove_noise import process_image_for_ocr
 
 try:
     import Image
@@ -11,7 +13,27 @@ except ImportError:
 import pytesseract
 import cv2
 
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
+
+def get_platform():
+    platforms = {
+        'linux': 'lnx',
+        'linux1': 'lnx',
+        'linux2': 'lnx',
+        'darwin': 'osx',
+        'win32': 'win'
+    }
+    print("Found: " + sys.platform)
+    if sys.platform not in platforms:
+        return sys.platform
+    return platforms[sys.platform]
+
+
+if get_platform() == "osx":
+    pytesseract.pytesseract.tesseract_cmd = '<unknown>'
+elif get_platform() == "win":
+    pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract'
+elif get_platform() == "lnx":
+    pytesseract.pytesseract.tesseract_cmd = '/usr/local/bin/tesseract'
 
 '''
 
@@ -70,19 +92,19 @@ def imagesearcharea(image, x1, y1, x2, y2, precision=0.8, im=None):
     return max_loc
 
 
-def imagetotext(text, debug):
+def text_search(text, debug):
     screenWidth, screenHeight = pyautogui.size()
-    screencapture = region_grabber(region=(130, 43, screenWidth / 2, 70))
+    screencapture = region_grabber(region=(screenWidth / 2 - 400, 50, screenWidth / 2, 800))
     img_array = np.array(screencapture)
     img_gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
 
     # print(pytesseract.image_to_string(Image.fromarray(imgarray)))
     # print(pytesseract.image_to_boxes(Image.fromarray(imgarray)))
-    print(pytesseract.image_to_data(Image.fromarray(img_array)))
+    # print(pytesseract.image_to_data(Image.fromarray(img_array)))
     screencapture.save('./debug.png')
 
-    print(pytesseract.image_to_data(Image.fromarray(img_gray)))
-    cv2.imwrite("./debug_gray.png", img_gray)
+    # print(pytesseract.image_to_data(Image.fromarray(img_gray)))
+    # cv2.imwrite("./debug_gray.png", img_gray)
 
     optimized_ocr_image = process_image_for_ocr('./debug.png')
     cv2.imwrite("./debug_ocr_ready.png", optimized_ocr_image)
@@ -135,7 +157,6 @@ def imagesearch(image, precision=0.8):
     img_rgb = np.array(im)
     img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
     template = cv2.imread(image, 0)
-    template.shape[::-1]
 
     res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
