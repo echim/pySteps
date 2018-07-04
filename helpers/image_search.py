@@ -1,12 +1,13 @@
-import numpy as np
-import pyautogui
+import logging
+import os
+import platform
 import random
 import time
-import sys
+
+import numpy as np
+import pyautogui
+
 from .image_remove_noise import process_image_for_ocr
-import logging
-import platform
-import os
 
 try:
     import Image
@@ -14,6 +15,11 @@ except ImportError:
     from PIL import Image
 import pytesseract
 import cv2
+
+from helpers.highlight.screen_highlight import ScreenHighlight
+from helpers.highlight.highlight_circle import HighlightCircle
+from helpers.general.color import Color
+from helpers.general.point import Point
 
 pyautogui.FAILSAFE = False
 DEFAULT_IMG_ACCURACY = 0.8
@@ -132,6 +138,12 @@ def _match_template(search_for, search_in, precision=DEFAULT_IMG_ACCURACY, searc
         return [-1, -1]
     else:
         _save_debug_image(needle, img_rgb, max_loc)
+
+        highlight = ScreenHighlight()
+        highlight.draw_circle(HighlightCircle(Point(max_loc[0], max_loc[1]), 5, Color.GREEN, 2))
+        highlight.render(500)
+
+        time.sleep(0.5)
         return max_loc
 
 

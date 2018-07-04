@@ -1,5 +1,6 @@
-from helpers.image_search import *
 import pytest
+
+from helpers.image_search import *
 
 
 # Example of test that might throw errors that we want to ignore

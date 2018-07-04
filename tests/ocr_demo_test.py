@@ -1,5 +1,6 @@
-from helpers.image_search import *
 from time import sleep
+
+from helpers.image_search import *
 
 menu = "open_menu.png"
 home = "home.png"
