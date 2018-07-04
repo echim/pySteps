@@ -1,5 +1,11 @@
 Automation project based on image recognition and OCR
 
+Create venv:
+- python -m venv vnv
+
+Enable venv:
+- .\vnv\Scripts\activate
+
 Requirements (install from requirements.txt):
 - pip install --force -r requirements.txt
 
@@ -21,9 +27,3 @@ Run commands:
 
 Only files that contains word "test" will be runned
 Only functions that start with word "test" will be reported
-
-Use pyenv to easily change between python versions
-- https://github.com/pyenv/pyenv
-
-PyCharm setup to use pyenv
-- http://victormartinez.co/2017/08/04/integrating-pycharm-with-pyenv
