@@ -1,7 +1,7 @@
 from tkinter import *
 
-from helpers.general.circle import Circle
-from helpers.general.rectangle import Rectangle
+from helpers.highlight.highlight_circle import HighlightCircle
+from helpers.highlight.highlight_rectangle import HighlightRectangle
 
 
 def _draw_circle(self, x, y, r, **kwargs):
@@ -15,14 +15,14 @@ def _draw_rectangle(self, x, y, w, h, **kwargs):
 
 class ScreenHighlight:
 
-    def draw_circle(self, a_circle: Circle):
+    def draw_circle(self, a_circle: HighlightCircle):
         return self.canvas.draw_circle(a_circle.center.x,
                                        a_circle.center.y,
                                        a_circle.radius,
                                        outline=a_circle.color.value,
                                        width=a_circle.thickness)
 
-    def draw_rectangle(self, a_rectangle: Rectangle):
+    def draw_rectangle(self, a_rectangle: HighlightRectangle):
         return self.canvas.draw_rectangle(a_rectangle.start_point.x,
                                           a_rectangle.start_point.y,
                                           a_rectangle.width,
