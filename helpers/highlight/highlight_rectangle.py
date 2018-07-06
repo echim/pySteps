@@ -1,12 +1,12 @@
-from helpers.general.circle import *
+from helpers.general.rectangle import *
 from helpers.general.color import Color
 
 
-class HighlightCircle(Circle):
-    def __init__(self, center: Point, radius: int, color: Color = Color.GREEN, thickness: int = 2):
-        Circle.__init__(self, center, radius)
-        self._color = color
-        self._thickness = thickness
+class HighlightRectangle(Rectangle):
+    def __init__(self, start_point: Point, width: int, height: int, color: Color = Color.GREEN, thickness: int = 2):
+        Rectangle.__init__(self, start_point, width, height)
+        self._color: Color = color
+        self._thickness: int = thickness
 
     @property
     def color(self):
