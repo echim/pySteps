@@ -1,7 +1,4 @@
-import pytest
-
-from core.helpers.app_manager import AppManager
-from core.image_search.screen import Screen
+from core.test_dependencies import *
 
 
 def test_image_search():
@@ -9,5 +6,6 @@ def test_image_search():
     app_manager.launch_app()
 
     Screen.find('forward.png')
+    Region(Point(0, 0), 200, 200).find('forward.png')
 
     app_manager.close_app()
