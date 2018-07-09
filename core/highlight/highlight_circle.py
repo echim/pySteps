@@ -1,5 +1,5 @@
-from helpers.general.circle import *
-from helpers.general.color import Color
+from core.helpers.circle import *
+from core.helpers.color import Color
 
 
 class HighlightCircle(Circle):

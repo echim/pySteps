@@ -1,5 +1,5 @@
-from helpers.general.rectangle import *
-from helpers.general.color import Color
+from core.helpers.rectangle import *
+from core.helpers.color import Color
 
 
 class HighlightRectangle(Rectangle):

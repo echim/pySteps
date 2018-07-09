@@ -1,4 +1,4 @@
-from helpers.general.point import Point
+from core.helpers.point import Point
 
 
 class Rectangle:

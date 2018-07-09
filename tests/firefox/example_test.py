@@ -1,6 +1,7 @@
 import pytest
 
-from helpers.image_search.image_search import *
+from core.image_search.image_search import *
+from core.helpers.app_manager import AppManager
 
 
 # Example of test that might throw errors that we want to ignore
@@ -18,6 +19,11 @@ def test_with_debug():
     pass
 
 
-def test_confirm_launch():
-    time.sleep(2)
+def test_image_search():
+    app_manager: AppManager = pytest.app_manager
+    app_manager.launch_app('-foreground -new-instace')
+
+    time.sleep(5)
     find('reload.png')
+
+    app_manager.close_app()

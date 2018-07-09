@@ -4,13 +4,13 @@ import cv2
 import numpy as np
 import pyautogui
 
-from helpers.general.color import Color
-from helpers.general.point import Point
-from helpers.general.rectangle import Rectangle
-from helpers.highlight.highlight_rectangle import HighlightRectangle
-from helpers.highlight.screen_highlight import ScreenHighlight
-from helpers.image_search.asset_image import AssetImage
-from helpers.image_search.screen_image import ScreenImage
+from core.helpers.color import Color
+from core.helpers.point import Point
+from core.helpers.rectangle import Rectangle
+from core.highlight.highlight_rectangle import HighlightRectangle
+from core.highlight.screen_highlight import ScreenHighlight
+from core.image_search.asset_image import AssetImage
+from core.image_search.screenshot_image import ScreenshotImage
 
 pyautogui.FAILSAFE = False
 _img_match_precision = 0.8
@@ -26,7 +26,7 @@ def update_image_assets(new_images: dict):
 
 
 def _match_template(asset_name: str, screen_coordinates: Rectangle = None, precision=_img_match_precision):
-    screen_img = ScreenImage(screen_coordinates)
+    screen_img = ScreenshotImage(screen_coordinates)
     asset_img = AssetImage(asset_name, _images[asset_name])
 
     res = cv2.matchTemplate(screen_img.image_gray_array, asset_img.image_gray_array, _cv_match_method)
@@ -47,7 +47,7 @@ def _match_template(asset_name: str, screen_coordinates: Rectangle = None, preci
 
 def _match_template_multiple(asset_name: str, screen_coordinates: Rectangle, precision=_img_match_precision,
                              threshold=0.9):
-    screen_img = ScreenImage(screen_coordinates)
+    screen_img = ScreenshotImage(screen_coordinates)
     asset_img = AssetImage(asset_name, _images[asset_name])
 
     res = cv2.matchTemplate(screen_img.image_gray_array, asset_img.image_gray_array, _cv_match_method)

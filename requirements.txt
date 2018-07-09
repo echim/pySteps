@@ -9,6 +9,7 @@ numpy==1.14.5
 opencv-python==3.4.1.15
 Pillow==5.2.0
 pluggy==0.6.0
+psutil==5.4.6
 py==1.5.4
 PyAutoGUI==0.9.36
 PyMsgBox==1.0.6

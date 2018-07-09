@@ -11,7 +11,7 @@ def pytest_runtest_setup(item):
 @pytest.fixture(scope="session", autouse=True)
 def load_app_manager(request):
     # called once at beginning
-    app_manager: AppManager = AppManager('firefox')
+    app_manager: AppManager = AppManager('iexplore')
     update_image_assets(app_manager.get_image_assets())
     pytest.app_manager = app_manager
 
