@@ -1,7 +1,7 @@
 import os
 import platform
-from enum import Enum
 import time
+from enum import Enum
 
 
 class OsPlatforms(Enum):

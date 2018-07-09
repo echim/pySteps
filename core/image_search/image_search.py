@@ -1,20 +1,20 @@
 import time
+from typing import List
 
 import cv2
 import numpy as np
 import pyautogui
-from typing import List
 
 from core.helpers.color import Color
 from core.helpers.point import Point
-from core.helpers.rectangle import Rectangle
+from core.helpers.screen_area import ScreenArea
 from core.highlight.highlight_rectangle import HighlightRectangle
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.asset_image import AssetImage
+from core.image_search.default_settings import DefaultSettings
 from core.image_search.screenshot_image import ScreenshotImage
 
 pyautogui.FAILSAFE = False
-_img_match_precision = 0.8
 _cv_match_method = cv2.TM_CCOEFF_NORMED
 _images = {}
 
@@ -26,7 +26,10 @@ def update_image_assets(new_images: dict):
     _images = new_images
 
 
-def _match_template(asset_name: str, screen_coordinates: Rectangle = None, precision=_img_match_precision):
+def _match_template(asset_name: str, screen_coordinates: ScreenArea = None, precision: int = None) -> Point or None:
+    if precision is None:
+        precision = DefaultSettings.SEARCH_PRECISION.value
+
     screen_img = ScreenshotImage(screen_coordinates)
     asset_img = AssetImage(asset_name, _images[asset_name])
 
@@ -46,8 +49,13 @@ def _match_template(asset_name: str, screen_coordinates: Rectangle = None, preci
         return found_at
 
 
-def _match_template_multiple(asset_name: str, screen_coordinates: Rectangle, precision=_img_match_precision,
-                             threshold=0.9) -> List[Point]:
+def _match_template_multiple(asset_name: str, screen_coordinates: ScreenArea, precision: int = None,
+                             threshold: int = None) -> List[Point]:
+    if precision is None:
+        precision = DefaultSettings.SEARCH_PRECISION.value
+    if threshold is None:
+        threshold = DefaultSettings.SEARCH_THRESHOLD.value
+
     screen_img = ScreenshotImage(screen_coordinates)
     asset_img = AssetImage(asset_name, _images[asset_name])
 
@@ -77,24 +85,24 @@ def _match_template_multiple(asset_name: str, screen_coordinates: Rectangle, pre
     return final_matches
 
 
-def _image_search(asset_name: str, in_region: Rectangle = None, precision: int = _img_match_precision):
-    return _match_template(asset_name, in_region, precision)
+def find(image_name: str, screen_coordinates: ScreenArea = None, precision: int = None) -> Point or Exception:
+    if not isinstance(image_name, str):
+        raise Exception('Invalid input type %s' % type(image_name))
 
-
-def _image_search_multiple(asset_name: str, in_region: Rectangle = None, precision: int = _img_match_precision):
-    return _match_template_multiple(asset_name, in_region, precision)
-
-
-def find(asset_name: str) -> Point or Exception:
-    if not isinstance(asset_name, str):
-        raise Exception('Invalid input type %s' % type(asset_name))
-
-    found = _image_search(asset_name)
+    found = _match_template(image_name, screen_coordinates, precision)
     if found is not None and isinstance(found, Point):
         return found
     else:
-        raise Exception('Unable to find %s' % asset_name)
+        raise Exception('Unable to find %s' % image_name)
 
 
-def find_all(image_name: str) -> List[Point]:
-    return _image_search_multiple(image_name)
+def find_all(image_name: str, screen_coordinates: ScreenArea = None, precision: int = None,
+             threshold: int = None) -> List[Point] or Exception:
+    if not isinstance(image_name, str):
+        raise Exception('Invalid input type %s' % type(image_name))
+
+    list_of_finds: List[Point] = _match_template_multiple(image_name, screen_coordinates, precision, threshold)
+    if len(list_of_finds) > 0:
+        return list_of_finds
+    else:
+        raise Exception('Unable to find %s' % image_name)
