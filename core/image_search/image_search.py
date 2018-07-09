@@ -7,7 +7,7 @@ import pyautogui
 
 from core.helpers.color import Color
 from core.helpers.point import Point
-from core.helpers.screen_area import ScreenArea
+from core.helpers.screen_rectangle import ScreenRectangle
 from core.highlight.highlight_rectangle import HighlightRectangle
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.asset_image import AssetImage
@@ -26,7 +26,7 @@ def update_image_assets(new_images: dict):
     _images = new_images
 
 
-def _match_template(asset_name: str, screen_coordinates: ScreenArea = None, precision: int = None) -> Point or None:
+def _match_template(asset_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None) -> Point or None:
     if precision is None:
         precision = DefaultSettings.SEARCH_PRECISION.value
 
@@ -49,7 +49,7 @@ def _match_template(asset_name: str, screen_coordinates: ScreenArea = None, prec
         return found_at
 
 
-def _match_template_multiple(asset_name: str, screen_coordinates: ScreenArea, precision: int = None,
+def _match_template_multiple(asset_name: str, screen_coordinates: ScreenRectangle, precision: int = None,
                              threshold: int = None) -> List[Point]:
     if precision is None:
         precision = DefaultSettings.SEARCH_PRECISION.value
@@ -85,7 +85,7 @@ def _match_template_multiple(asset_name: str, screen_coordinates: ScreenArea, pr
     return final_matches
 
 
-def find(image_name: str, screen_coordinates: ScreenArea = None, precision: int = None) -> Point or Exception:
+def find(image_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None) -> Point or Exception:
     if not isinstance(image_name, str):
         raise Exception('Invalid input type %s' % type(image_name))
 
@@ -96,7 +96,7 @@ def find(image_name: str, screen_coordinates: ScreenArea = None, precision: int 
         raise Exception('Unable to find %s' % image_name)
 
 
-def find_all(image_name: str, screen_coordinates: ScreenArea = None, precision: int = None,
+def find_all(image_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None,
              threshold: int = None) -> List[Point] or Exception:
     if not isinstance(image_name, str):
         raise Exception('Invalid input type %s' % type(image_name))

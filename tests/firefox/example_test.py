@@ -1,7 +1,9 @@
 import pytest
 
 from core.helpers.app_manager import AppManager
+from core.helpers.point import Point
 from core.image_search.screen import Screen
+from core.image_search.region import Region
 
 
 # Example of test that might throw errors that we want to ignore
@@ -24,5 +26,6 @@ def test_image_search():
     app_manager.launch_app('-foreground -new-instace')
 
     Screen.find('reload.png')
+    Region(Point(0, 0), 500, 500).find('reload.png')
 
     app_manager.close_app()

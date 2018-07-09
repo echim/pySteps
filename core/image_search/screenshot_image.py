@@ -3,11 +3,11 @@ import numpy as np
 from pyautogui import screenshot
 from pyautogui import size as get_screen_size
 
-from core.helpers.screen_area import ScreenArea
+from core.helpers.screen_rectangle import ScreenRectangle
 
 
 class ScreenshotImage:
-    def __init__(self, in_region: ScreenArea = None):
+    def __init__(self, in_region: ScreenRectangle = None):
         screen_width, screen_height = get_screen_size()
         region_coordinates = (0, 0, screen_width, screen_height)
 
