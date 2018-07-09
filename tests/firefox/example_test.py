@@ -1,7 +1,7 @@
 import pytest
 
-from core.image_search.image_search import *
 from core.helpers.app_manager import AppManager
+from core.image_search.screen import Screen
 
 
 # Example of test that might throw errors that we want to ignore
@@ -23,7 +23,6 @@ def test_image_search():
     app_manager: AppManager = pytest.app_manager
     app_manager.launch_app('-foreground -new-instace')
 
-    time.sleep(5)
-    find('reload.png')
+    Screen.find('reload.png')
 
     app_manager.close_app()

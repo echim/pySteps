@@ -3,6 +3,7 @@ import time
 import cv2
 import numpy as np
 import pyautogui
+from typing import List
 
 from core.helpers.color import Color
 from core.helpers.point import Point
@@ -46,7 +47,7 @@ def _match_template(asset_name: str, screen_coordinates: Rectangle = None, preci
 
 
 def _match_template_multiple(asset_name: str, screen_coordinates: Rectangle, precision=_img_match_precision,
-                             threshold=0.9):
+                             threshold=0.9) -> List[Point]:
     screen_img = ScreenshotImage(screen_coordinates)
     asset_img = AssetImage(asset_name, _images[asset_name])
 
@@ -84,7 +85,10 @@ def _image_search_multiple(asset_name: str, in_region: Rectangle = None, precisi
     return _match_template_multiple(asset_name, in_region, precision)
 
 
-def find(asset_name):
+def find(asset_name: str) -> Point or Exception:
+    if not isinstance(asset_name, str):
+        raise Exception('Invalid input type %s' % type(asset_name))
+
     found = _image_search(asset_name)
     if found is not None and isinstance(found, Point):
         return found
@@ -92,5 +96,5 @@ def find(asset_name):
         raise Exception('Unable to find %s' % asset_name)
 
 
-def find_all(image_name):
+def find_all(image_name: str) -> List[Point]:
     return _image_search_multiple(image_name)

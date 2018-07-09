@@ -1,5 +1,6 @@
 import os
 import subprocess
+import time
 
 from core.helpers.os_helpers import get_app_full_name, is_platform_windows
 from core.helpers.path_manager import PathManager
@@ -39,6 +40,7 @@ class AppManager:
         if extra_params is not None and isinstance(extra_params, str):
             launch_cmd.append(extra_params)
         subprocess.Popen(launch_cmd, shell=False)
+        time.sleep(5)
 
     def close_app(self):
         app_full_name = get_app_full_name(self.app_name)
