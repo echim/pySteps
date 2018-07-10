@@ -13,7 +13,7 @@ class AssetImage:
             raise Exception('Invalid AssetImage path: %s' % image_path)
 
         self._image_gray_array = cv2.imread(image_path, 0)
-        width, height = self._image_gray_array.shape
+        height, width = self._image_gray_array.shape
         self._width = width
         self._height = height
 

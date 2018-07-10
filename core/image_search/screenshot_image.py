@@ -17,7 +17,7 @@ class ScreenshotImage:
         screen_pil_image = screenshot(region=region_coordinates)
 
         self._image_gray_array = cv2.cvtColor(np.array(screen_pil_image), cv2.COLOR_BGR2GRAY)
-        width, height = self._image_gray_array.shape
+        height, width = self._image_gray_array.shape
         self._width = width
         self._height = height
 

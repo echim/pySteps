@@ -1,9 +1,12 @@
+from core.default_settings import DefaultSettings
 from core.helpers.color import Color
 from core.helpers.rectangle import *
 
 
 class HighlightRectangle(Rectangle):
-    def __init__(self, start_point: Point, width: int, height: int, color: Color = Color.GREEN, thickness: int = 2):
+    def __init__(self, start_point: Point, width: int, height: int, color: Color = Color.GREEN, thickness: int = None):
+        if thickness is None:
+            thickness = DefaultSettings.HIGHLIGHT_THICKNESS.value
         Rectangle.__init__(self, start_point, width, height)
         self._color: Color = color
         self._thickness: int = thickness

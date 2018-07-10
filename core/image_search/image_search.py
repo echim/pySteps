@@ -5,13 +5,13 @@ import cv2
 import numpy as np
 import pyautogui
 
+from core.default_settings import DefaultSettings
 from core.helpers.color import Color
 from core.helpers.point import Point
 from core.helpers.screen_rectangle import ScreenRectangle
 from core.highlight.highlight_rectangle import HighlightRectangle
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.asset_image import AssetImage
-from core.image_search.default_settings import DefaultSettings
 from core.image_search.screenshot_image import ScreenshotImage
 
 pyautogui.FAILSAFE = False
@@ -44,8 +44,9 @@ def _match_template(asset_name: str, screen_coordinates: ScreenRectangle = None,
 
         highlight = ScreenHighlight()
         highlight.draw_rectangle(HighlightRectangle(found_at, asset_img.width, asset_img.height, Color.GREEN, 2))
-        highlight.render(1000)
-        time.sleep(1)
+
+        highlight.render(int(DefaultSettings.HIGHLIGHT_DURATION.value * 1000))
+        time.sleep(DefaultSettings.HIGHLIGHT_DURATION.value)
 
         return found_at
 

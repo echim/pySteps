@@ -1,10 +1,10 @@
 import os
 from enum import Enum
 
+from core.default_settings import DefaultSettings
 from core.helpers.app_name import AppName
 from core.helpers.os_helpers import OsPlatform, get_os_platform, get_project_root_path, Extension, \
     load_files, is_platform_windows, get_app_full_name, get_app_base_name
-from core.image_search.default_settings import DefaultSettings
 
 
 class DefaultPaths(Enum):

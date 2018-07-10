@@ -5,8 +5,7 @@ from core.test_dependencies import *
 # https://docs.pytest.org/en/2.9.0/skipping.html
 @pytest.mark.xfail(raises=ZeroDivisionError)
 def test_raises():
-    assert 1 == 1
-    zero_division = 9 / 0
+    return 9 / 0
 
 
 # Example of test with debug
@@ -20,7 +19,9 @@ def test_image_search():
     app_manager: AppManager = pytest.app_manager
     app_manager.launch_app('-foreground -new-instace')
 
-    Screen.find('reload.png')
+    found_coord = Screen.find('reload.png')
+    assert isinstance(found_coord, Point)
+
     Region(Point(0, 0), 500, 500).find('reload.png')
 
     app_manager.close_app()
