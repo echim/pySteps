@@ -4,7 +4,7 @@ import time
 from enum import Enum
 
 
-class OsPlatforms(Enum):
+class OsPlatform(Enum):
     WINDOWS = 'windows'
     LINUX = 'linux'
     OSX = 'darwin'
@@ -14,11 +14,6 @@ class Extension(Enum):
     EXE = '.exe'
     PNG = '.png'
     HTML = '.html'
-
-
-class WinDefaultPaths(Enum):
-    PROGRAM_FILES_86 = 'C:\\Program Files (x86)'
-    PROGRAM_FILES_64 = 'C:\\Program Files'
 
 
 def get_project_root_path():
@@ -57,16 +52,16 @@ def load_files(root_folders: list, extension: Extension = None, with_name: str =
     return all_files
 
 
-def get_os_platform() -> OsPlatforms:
+def get_os_platform() -> OsPlatform:
     current_system = platform.system().upper()
-    if OsPlatforms[current_system]:
-        return OsPlatforms[current_system]
+    if OsPlatform[current_system]:
+        return OsPlatform[current_system]
     else:
         raise Exception('Unknown os platform')
 
 
 def is_platform_windows() -> bool:
-    return get_os_platform() == OsPlatforms.WINDOWS
+    return get_os_platform() == OsPlatform.WINDOWS
 
 
 def get_app_base_name(app_name: str = None) -> str or None:

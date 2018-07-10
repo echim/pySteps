@@ -26,7 +26,8 @@ def update_image_assets(new_images: dict):
     _images = new_images
 
 
-def _match_template(asset_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None) -> Point or None:
+def _match_template(asset_name: str, screen_coordinates: ScreenRectangle = None,
+                    precision: int = None) -> Point or None:
     if precision is None:
         precision = DefaultSettings.SEARCH_PRECISION.value
 
@@ -106,3 +107,25 @@ def find_all(image_name: str, screen_coordinates: ScreenRectangle = None, precis
         return list_of_finds
     else:
         raise Exception('Unable to find %s' % image_name)
+
+
+def wait_find(image_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None,
+              wait_seconds: float = None) -> Point or Exception:
+    if not isinstance(image_name, str):
+        raise Exception('Invalid input type %s' % type(image_name))
+
+    if wait_seconds is None:
+        wait_seconds = DefaultSettings.WAIT_TIMEOUT.value
+
+    start_time = time.time()
+    current_duration = 0
+    found = False
+
+    while found is False and current_duration <= wait_seconds:
+        print('Waiting %s for %s seconds' % (image_name, current_duration))
+        found_coord = _match_template(image_name, screen_coordinates, precision)
+        current_duration = round(float(time.time() - start_time), 2)
+        if found_coord is not None and isinstance(found_coord, Point):
+            return found_coord
+
+    raise Exception('Waiting for %s image, unable to find it after %s seconds' % (image_name, wait_seconds))

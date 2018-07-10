@@ -1,33 +1,26 @@
 import os
 import subprocess
-import time
 
+from core.helpers.app_details import AppDetails
 from core.helpers.os_helpers import get_app_full_name, is_platform_windows
-from core.helpers.path_manager import PathManager
+from core.image_search.screen import Screen
+from core.image_search.default_settings import DefaultSettings
 
 
 class AppManager:
 
-    def __init__(self, app_name: str, custom_executable_path: str = None):
-        self._app_name: str = get_app_full_name(app_name)
-        self._app_path: str = None
-        self._img_assets: dict = None
+    def __init__(self, app_details: AppDetails):
 
-        self._path_manager: PathManager = PathManager(custom_executable_path)
-        self.sync_assets(self.app_name)
-
-    def sync_assets(self, app_name):
-        self._app_path: str = self._path_manager.get_app_path(app_name)
-        self._img_assets: dict = self._path_manager.get_img_assets(app_name)
+        self._app_details: AppDetails = app_details
+        self._img_assets: dict = self._app_details.get_image_assets()
 
     @property
     def app_name(self):
-        return self._app_name
+        return self._app_details.app_name
 
-    @app_name.setter
-    def app_name(self, new_name: str):
-        self._app_name = get_app_full_name(new_name)
-        self.sync_assets(self._app_name)
+    @property
+    def app_path(self):
+        return self._app_details.app_path
 
     def get_image_assets(self) -> dict:
         if self._img_assets is not None:
@@ -36,15 +29,15 @@ class AppManager:
             raise Exception('Unable to retrieve Image Assets')
 
     def launch_app(self, extra_params: str = None):
-        launch_cmd = [self._app_path]
+        launch_cmd = [self._app_details.app_path]
         if extra_params is not None and isinstance(extra_params, str):
             launch_cmd.append(extra_params)
         subprocess.Popen(launch_cmd, shell=False)
-        time.sleep(5)
+        Screen.wait_find(DefaultSettings.CONFIRM_LAUNCH_NAME.value, wait_seconds=20.0)
 
     def close_app(self):
         app_full_name = get_app_full_name(self.app_name)
         if is_platform_windows():
             os.system('Taskkill /f /im %s' % app_full_name)
         else:
-            raise Exception('Not implemented')
+            raise Exception('Close app not implemented')

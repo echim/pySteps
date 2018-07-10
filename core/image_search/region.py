@@ -1,9 +1,10 @@
 import time
+from typing import List
 
 from core.helpers.point import Point
 from core.helpers.screen_rectangle import ScreenRectangle
 from core.highlight.screen_highlight import ScreenHighlight
-from core.image_search.image_search import find, find_all
+from core.image_search.image_search import find, find_all, wait_find
 
 
 class Region:
@@ -22,6 +23,10 @@ class Region:
         self.highlight()
         return find(image_name, self._region_area, precision)
 
-    def find_all(self, image_name: str, precision: int = None):
+    def find_all(self, image_name: str, precision: int = None) -> List[Point] or Exception:
         self.highlight()
         return find_all(image_name, self._region_area, precision)
+
+    def find_wait(self, image_name: str, precision: int = None, wait_seconds: float = None) -> Point or Exception:
+        self.highlight()
+        return wait_find(image_name, self._region_area, precision, wait_seconds)
