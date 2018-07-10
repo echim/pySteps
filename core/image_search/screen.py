@@ -1,4 +1,5 @@
 from typing import List
+
 from core.helpers.point import Point
 from core.image_search.image_search import find, find_all, wait_find
 

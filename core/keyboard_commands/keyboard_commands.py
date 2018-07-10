@@ -1,5 +1,6 @@
-import pyautogui
 import time
+
+import pyautogui
 
 
 def wait_maximize_finish():
