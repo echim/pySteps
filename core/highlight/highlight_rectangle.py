@@ -1,5 +1,5 @@
 from core.default_settings import DefaultSettings
-from core.helpers.color import Color
+from core.enums.color import Color
 from core.helpers.rectangle import *
 
 

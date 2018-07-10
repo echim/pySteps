@@ -6,7 +6,7 @@ import numpy as np
 import pyautogui
 
 from core.default_settings import DefaultSettings
-from core.helpers.color import Color
+from core.enums.color import Color
 from core.helpers.point import Point
 from core.helpers.screen_rectangle import ScreenRectangle
 from core.highlight.highlight_rectangle import HighlightRectangle

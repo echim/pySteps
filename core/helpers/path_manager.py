@@ -1,37 +1,10 @@
 import os
-from enum import Enum
 
 from core.default_settings import DefaultSettings
-from core.helpers.app_name import AppName
-from core.helpers.os_helpers import OsPlatform, get_os_platform, get_project_root_path, Extension, \
-    load_files, is_platform_windows, get_app_full_name, get_app_base_name
-
-
-class DefaultPaths(Enum):
-    WINDOWS = {
-                  'APPLICATIONS': ['C:\\Program Files (x86)', 'C:\\Program Files']
-              },
-    LINUX = {
-                'APPLICATIONS': ['/bin', '/usr/bin', '/usr/share']
-            },
-    DARWIN = {
-        'APPLICATIONS': ['~/Applications']
-    }
-
-
-class CustomPaths(Enum):
-    WINDOWS = {
-        AppName.FIREFOX.name: 'C:\\Program Files\\Mozilla Firefox',
-        AppName.INTERNET_EXPLORER.name: 'C:\\Program Files\\internet explorer'
-    }
-    LINUX = {
-        AppName.FIREFOX.name: None,
-        AppName.INTERNET_EXPLORER.name: None
-    }
-    DARWIN = {
-        AppName.FIREFOX.name: '',
-        AppName.INTERNET_EXPLORER.name: None
-    }
+from core.enums.default_paths import DefaultPaths
+from core.enums.extension import Extension
+from core.helpers.os_helpers import OsPlatform, get_os_platform, get_project_root_path, load_files, is_platform_windows, \
+    get_app_full_name, get_app_base_name
 
 
 class PathManager:

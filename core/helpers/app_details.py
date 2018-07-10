@@ -1,6 +1,7 @@
-from core.helpers.app_name import AppName
+from core.enums.app_name import AppName
+from core.enums.custom_paths import CustomPaths
 from core.helpers.os_helpers import get_os_platform, OsPlatform
-from core.helpers.path_manager import CustomPaths, PathManager, get_app_full_name, get_app_base_name
+from core.helpers.path_manager import PathManager, get_app_full_name, get_app_base_name
 
 
 class AppDetails:

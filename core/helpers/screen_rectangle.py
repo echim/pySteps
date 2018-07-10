@@ -1,5 +1,5 @@
 from core.default_settings import DefaultSettings
-from core.helpers.color import Color
+from core.enums.color import Color
 from core.helpers.point import Point
 from core.helpers.rectangle import Rectangle
 from core.highlight.highlight_rectangle import HighlightRectangle

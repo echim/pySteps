@@ -1,5 +1,5 @@
+from core.enums.color import Color
 from core.helpers.circle import *
-from core.helpers.color import Color
 
 
 class HighlightCircle(Circle):

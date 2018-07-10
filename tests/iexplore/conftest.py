@@ -2,7 +2,7 @@ import pytest
 
 from core.helpers.app_details import AppDetails
 from core.helpers.app_manager import AppManager
-from core.helpers.app_name import AppName
+from core.enums.app_name import AppName
 from core.image_search.image_search import update_image_assets
 
 

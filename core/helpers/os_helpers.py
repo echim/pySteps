@@ -1,19 +1,9 @@
 import os
 import platform
 import time
-from enum import Enum
 
-
-class OsPlatform(Enum):
-    WINDOWS = 'windows'
-    LINUX = 'linux'
-    OSX = 'darwin'
-
-
-class Extension(Enum):
-    EXE = '.exe'
-    PNG = '.png'
-    HTML = '.html'
+from core.enums.extension import Extension
+from core.enums.os_platform import OsPlatform
 
 
 def get_project_root_path():
