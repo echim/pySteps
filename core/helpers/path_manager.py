@@ -17,11 +17,11 @@ class PathManager:
                 raise Exception('Path not found: %s' % self.custom_executable_path)
         else:
             if self.platform == OsPlatform.WINDOWS:
-                app_paths = DefaultPaths[OsPlatform.WINDOWS.name]['APPLICATIONS']
+                app_paths = DefaultPaths[OsPlatform.WINDOWS.name].value['APPLICATIONS']
             elif self.platform == OsPlatform.LINUX:
-                app_paths = DefaultPaths[OsPlatform.LINUX.name]['APPLICATIONS']
+                app_paths = DefaultPaths[OsPlatform.LINUX.name].value['APPLICATIONS']
             elif self.platform == OsPlatform.OSX:
-                app_paths = DefaultPaths[OsPlatform.DARWIN.name]['APPLICATIONS']
+                app_paths = DefaultPaths[OsPlatform.DARWIN.name].value['APPLICATIONS']
             else:
                 raise Exception('Unknown app paths for %s platform' % self.platform.value)
 
