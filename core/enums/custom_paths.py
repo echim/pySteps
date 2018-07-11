@@ -9,7 +9,7 @@ class CustomPaths(Enum):
         AppName.INTERNET_EXPLORER.name: 'C:\\Program Files\\internet explorer'
     }
     LINUX = {
-        AppName.FIREFOX.name: None,
+        AppName.FIREFOX.name: '/usr/bin/',
         AppName.INTERNET_EXPLORER.name: None
     }
     DARWIN = {
