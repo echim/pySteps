@@ -45,5 +45,7 @@ class AppManager:
 
         app_full_name = get_app_full_name(self.app_name)
         current_platform = get_os_platform()
-        if current_platform == OsPlatform.WINDOWS:
+        if current_platform is OsPlatform.WINDOWS:
             os.system('taskkill /f /im  %s' % app_full_name)
+        if current_platform is OsPlatform.LINUX:
+            os.system('pkill %s' % app_full_name)
