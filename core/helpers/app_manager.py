@@ -1,10 +1,11 @@
+import os
 import subprocess
 
-import psutil
-
 from core.default_settings import DefaultSettings
+from core.enums.os_platform import OsPlatform
 from core.helpers.app_details import AppDetails
 from core.helpers.os_helpers import get_app_full_name
+from core.helpers.os_helpers import get_os_platform
 from core.image_search.screen import Screen
 from core.keyboard_commands.keyboard_commands import maximize_current_window, close_current_window
 
@@ -43,9 +44,6 @@ class AppManager:
         close_current_window()
 
         app_full_name = get_app_full_name(self.app_name)
-        for process in psutil.process_iter():
-            try:
-                if process.name() == app_full_name:
-                    process.kill()
-            except Exception:
-                print('Unable to close process %s' % app_full_name)
+        current_platform = get_os_platform()
+        if current_platform == OsPlatform.WINDOWS:
+            os.system('taskkill /f /im  %s' % app_full_name)
