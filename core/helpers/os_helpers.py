@@ -38,7 +38,7 @@ def load_files(root_folders: list, extension: Extension = None, with_name: str =
                             all_files[file_name] = os.path.join(root, file_name)
 
     total_time = time.time() - start
-    print('Loaded %s (%s) files from %s in %f seconds' % (len(all_files), extension.value, root_folders, total_time))
+    print('Loaded %s (%s) files from %s in %f seconds' % (len(all_files), extension, root_folders, total_time))
     return all_files
 
 
