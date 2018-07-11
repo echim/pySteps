@@ -2,6 +2,8 @@ from tkinter import *
 
 from core.highlight.highlight_circle import HighlightCircle
 from core.highlight.highlight_rectangle import HighlightRectangle
+from core.enums.os_platform import OsPlatform
+from core.helpers.os_helpers import get_os_platform
 
 
 def _draw_circle(self, x, y, r, **kwargs):
@@ -45,13 +47,19 @@ class ScreenHighlight:
         s_width = self.root.winfo_screenwidth()
         s_height = self.root.winfo_screenheight()
 
-        canvas = Canvas(self.root, width=s_width, height=s_height, borderwidth=0, highlightthickness=0, bg="black")
+        canvas = Canvas(self.root, width=s_width, height=s_height, borderwidth=0, highlightthickness=0, bg="white")
         canvas.grid()
 
         Canvas.draw_circle = _draw_circle
         Canvas.draw_rectangle = _draw_rectangle
 
-        self.root.wm_attributes("-transparentcolor", "black")
-        # self.root.attributes('-alpha', 0.9)
+        platform: OsPlatform = get_os_platform()
+
+        if platform is OsPlatform.WINDOWS:
+            self.root.wm_attributes("-transparentcolor", "white")
+
+        if platform is OsPlatform.LINUX:
+            self.root.wait_visibility(self.root)
+            self.root.attributes('-alpha', 0.9)
 
         self.canvas = canvas

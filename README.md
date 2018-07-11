@@ -20,6 +20,8 @@ Ubuntu Ubuntu 18.04 LTS requirements:
     sudo apt install python3.6-dev
     sudo apt install python3-tk
 
+    sudo apt install scrot
+
     pip install python3-xlib ( in case of from Xlib.display import Display )
 
 Create virtualenv:
