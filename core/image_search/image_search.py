@@ -87,7 +87,8 @@ def _match_template_multiple(asset_name: str, screen_coordinates: ScreenRectangl
     return final_matches
 
 
-def find(image_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None) -> Point or Exception:
+def image_find(image_name: str, screen_coordinates: ScreenRectangle = None,
+               precision: int = None) -> Point or Exception:
     if not isinstance(image_name, str):
         raise Exception('Invalid input type %s' % type(image_name))
 
@@ -98,8 +99,8 @@ def find(image_name: str, screen_coordinates: ScreenRectangle = None, precision:
         raise Exception('Unable to find %s' % image_name)
 
 
-def find_all(image_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None,
-             threshold: int = None) -> List[Point] or Exception:
+def image_find_all(image_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None,
+                   threshold: int = None) -> List[Point] or Exception:
     if not isinstance(image_name, str):
         raise Exception('Invalid input type %s' % type(image_name))
 
@@ -110,8 +111,8 @@ def find_all(image_name: str, screen_coordinates: ScreenRectangle = None, precis
         raise Exception('Unable to find %s' % image_name)
 
 
-def wait_find(image_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None,
-              wait_seconds: float = None) -> Point or Exception:
+def image_wait(image_name: str, screen_coordinates: ScreenRectangle = None, precision: int = None,
+               wait_seconds: float = None) -> Point or Exception:
     if not isinstance(image_name, str):
         raise Exception('Invalid input type %s' % type(image_name))
 

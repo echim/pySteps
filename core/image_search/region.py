@@ -5,7 +5,7 @@ from core.default_settings import DefaultSettings
 from core.helpers.point import Point
 from core.helpers.screen_rectangle import ScreenRectangle
 from core.highlight.screen_highlight import ScreenHighlight
-from core.image_search.image_search import find, find_all, wait_find
+from core.image_search.image_search import image_find, image_find_all, image_wait
 
 
 class Region:
@@ -23,14 +23,14 @@ class Region:
         highlight.render(int(seconds * 1000))
         time.sleep(seconds)
 
-    def find(self, image_name: str, precision: int = None) -> Point or Exception:
+    def image_find(self, image_name: str, precision: int = None) -> Point or Exception:
         self.highlight()
-        return find(image_name, self._region_area, precision)
+        return image_find(image_name, self._region_area, precision)
 
-    def find_all(self, image_name: str, precision: int = None) -> List[Point] or Exception:
+    def image_find_all(self, image_name: str, precision: int = None) -> List[Point] or Exception:
         self.highlight()
-        return find_all(image_name, self._region_area, precision)
+        return image_find_all(image_name, self._region_area, precision)
 
-    def find_wait(self, image_name: str, precision: int = None, wait_seconds: float = None) -> Point or Exception:
+    def image_wait(self, image_name: str, precision: int = None, wait_seconds: float = None) -> Point or Exception:
         self.highlight()
-        return wait_find(image_name, self._region_area, precision, wait_seconds)
+        return image_wait(image_name, self._region_area, precision, wait_seconds)

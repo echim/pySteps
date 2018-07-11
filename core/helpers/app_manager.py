@@ -36,7 +36,7 @@ class AppManager:
             launch_cmd.append(extra_params)
         subprocess.Popen(launch_cmd, shell=False)
 
-        Screen.wait_find(DefaultSettings.CONFIRM_LAUNCH_NAME.value, wait_seconds=10.0)
+        Screen.image_wait(DefaultSettings.CONFIRM_LAUNCH_NAME.value, wait_seconds=10.0)
         maximize_current_window()
 
     def close_app(self):

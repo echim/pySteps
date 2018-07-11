@@ -19,9 +19,9 @@ def test_image_search():
     app_manager: AppManager = pytest.app_manager
     app_manager.launch_app('-foreground -new-instace')
 
-    found_coord = Screen.find('reload.png')
+    found_coord = Screen.image_find('reload.png')
     assert isinstance(found_coord, Point)
 
-    Region(Point(0, 0), 500, 500).find('reload.png')
+    Region(Point(0, 0), 500, 500).image_find('reload.png')
 
     app_manager.close_app()
