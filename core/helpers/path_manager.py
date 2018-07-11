@@ -41,7 +41,7 @@ class PathManager:
     def find_app_path_by_name(self, app_name: str) -> str:
         of_extension: Extension = Extension.EXE if is_platform_windows() else None
         app_full_name = get_app_full_name(app_name)
-        all_executables = load_files(self.get_platform_applications_paths(), of_extension)
+        all_executables = load_files(self.get_platform_applications_paths(), of_extension, with_name=app_full_name)
 
         if app_full_name in all_executables.keys():
             return all_executables[app_full_name]
