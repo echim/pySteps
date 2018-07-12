@@ -1,8 +1,7 @@
 import time
 
 import pyautogui
-from core.enums.os_platform import OsPlatform
-from core.helpers.os_helpers import get_os_platform
+from core.helpers.os_helpers import is_platform_darwin, is_platform_linux, is_platform_windows
 
 
 def wait_window_maximize_finish():
@@ -24,19 +23,17 @@ def type_with_delay(*args):
 
 
 def close_current_window():
-    current_platform = get_os_platform()
-    if current_platform is OsPlatform.WINDOWS:
+    if is_platform_windows():
         type_with_delay('alt', 'space', 'c')
-    if current_platform is OsPlatform.LINUX:
+    if is_platform_linux():
         type_with_delay('alt', 'f4')
     wait_window_close_finish()
 
 
 def maximize_current_window():
-    current_platform = get_os_platform()
-    if current_platform is OsPlatform.WINDOWS:
+    if is_platform_windows():
         type_with_delay('alt', 'space', 'x')
-    if current_platform is OsPlatform.LINUX:
+    if is_platform_linux():
         type_with_delay('apps', 'up')
 
     wait_window_maximize_finish()

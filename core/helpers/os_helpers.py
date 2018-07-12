@@ -54,6 +54,14 @@ def is_platform_windows() -> bool:
     return get_os_platform() == OsPlatform.WINDOWS
 
 
+def is_platform_darwin() -> bool:
+    return get_os_platform() == OsPlatform.DARWIN
+
+
+def is_platform_linux() -> bool:
+    return get_os_platform() == OsPlatform.LINUX
+
+
 def get_app_base_name(app_name: str = None) -> str or None:
     if app_name is None:
         return None
@@ -68,4 +76,10 @@ def get_app_full_name(app_name: str = None) -> str or None:
         return None
 
     base_name: str = get_app_base_name(app_name)
-    return base_name + Extension.EXE.value if is_platform_windows() else base_name
+
+    if is_platform_windows():
+        return base_name + Extension.EXE.value
+    elif is_platform_darwin():
+        return base_name + Extension.APP.value
+    else:
+        return base_name

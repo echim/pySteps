@@ -4,7 +4,7 @@ from core.default_settings import DefaultSettings
 from core.enums.default_paths import DefaultPaths
 from core.enums.extension import Extension
 from core.helpers.os_helpers import OsPlatform, get_os_platform, get_project_root_path, load_files, is_platform_windows, \
-    get_app_full_name, get_app_base_name
+    get_app_full_name, get_app_base_name, is_platform_darwin, is_platform_linux
 
 
 class PathManager:
@@ -16,11 +16,11 @@ class PathManager:
             else:
                 raise Exception('Path not found: %s' % self.custom_executable_path)
         else:
-            if self.platform == OsPlatform.WINDOWS:
+            if is_platform_windows():
                 app_paths = DefaultPaths[OsPlatform.WINDOWS.name].value['APPLICATIONS']
-            elif self.platform == OsPlatform.LINUX:
+            elif is_platform_linux():
                 app_paths = DefaultPaths[OsPlatform.LINUX.name].value['APPLICATIONS']
-            elif self.platform == OsPlatform.OSX:
+            elif is_platform_darwin():
                 app_paths = DefaultPaths[OsPlatform.DARWIN.name].value['APPLICATIONS']
             else:
                 raise Exception('Unknown app paths for %s platform' % self.platform.value)
@@ -39,9 +39,8 @@ class PathManager:
         return [image_assets_path]
 
     def find_app_path_by_name(self, app_name: str) -> str:
-        of_extension: Extension = Extension.EXE if is_platform_windows() else None
         app_full_name = get_app_full_name(app_name)
-        all_executables = load_files(self.get_platform_applications_paths(), of_extension, with_name=app_full_name)
+        all_executables = load_files(self.get_platform_applications_paths(), with_name=app_full_name)
 
         if app_full_name in all_executables.keys():
             return all_executables[app_full_name]

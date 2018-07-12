@@ -1,6 +1,13 @@
 Generic python automation framework with PyAutogui, OpenCV and Tesseract-OCR for desktop apps.
 
-Ubuntu Ubuntu 18.04 LTS requirements:
+macOS High Sierra requirements:
+    pip3 install pyobjc-core
+    pip3 install pyobjc
+
+Windows 10 Pro requirements:
+    Install anaconda from - https://www.anaconda.com/download
+
+Ubuntu 18.04 LTS requirements:
     sudo apt-get install build-essential
     sudo apt-get install checkinstall
     sudo apt-get install zlib1g-dev
@@ -22,7 +29,10 @@ Ubuntu Ubuntu 18.04 LTS requirements:
 
     sudo apt install scrot
 
-    pip install python3-xlib ( in case of from Xlib.display import Display )
+    pip install python3-xlib ( in case of from Xlib.display import Display error )
+
+Install virtualenv:
+    pip3 install virtualenv
 
 Create virtualenv:
     python3 -m venv vnv
@@ -32,7 +42,7 @@ Enable virtualenv:
     Ubuntu : source vnv/bin/activate
     Osx : source vnv/bin/activate
 
-Requirements (install from requirements.txt):
+Project Requirements (install from requirements.txt):
     pip3 install --force -r requirements.txt
 
 Run test commands:
@@ -46,3 +56,4 @@ Only functions that start with word "test" will be reported
 Tested on :
     Windows 10 Pro
     Ubuntu 18.04 LTS
+    macOS High Sierra

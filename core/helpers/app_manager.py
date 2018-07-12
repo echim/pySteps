@@ -2,10 +2,9 @@ import os
 import subprocess
 
 from core.default_settings import DefaultSettings
-from core.enums.os_platform import OsPlatform
 from core.helpers.app_details import AppDetails
 from core.helpers.os_helpers import get_app_full_name
-from core.helpers.os_helpers import get_os_platform
+from core.helpers.os_helpers import is_platform_linux, is_platform_windows
 from core.image_search.screen import Screen
 from core.keyboard_commands.keyboard_commands import maximize_current_window, close_current_window
 
@@ -44,8 +43,7 @@ class AppManager:
         close_current_window()
 
         app_full_name = get_app_full_name(self.app_name)
-        current_platform = get_os_platform()
-        if current_platform is OsPlatform.WINDOWS:
+        if is_platform_windows():
             os.system('taskkill /f /im  %s' % app_full_name)
-        if current_platform is OsPlatform.LINUX:
+        if is_platform_linux():
             os.system('pkill %s' % app_full_name)

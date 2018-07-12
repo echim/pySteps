@@ -13,6 +13,6 @@ class CustomPaths(Enum):
         AppName.INTERNET_EXPLORER.name: None
     }
     DARWIN = {
-        AppName.FIREFOX.name: '',
+        AppName.FIREFOX.name: '/Applications/',
         AppName.INTERNET_EXPLORER.name: None
     }

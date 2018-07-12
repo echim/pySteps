@@ -9,5 +9,5 @@ class DefaultPaths(Enum):
         'APPLICATIONS': ['/bin', '/usr/bin', '/usr/share']
     }
     DARWIN = {
-        'APPLICATIONS': ['~/Applications']
+        'APPLICATIONS': ['/Applications']
     }
