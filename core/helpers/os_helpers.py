@@ -79,7 +79,5 @@ def get_app_full_name(app_name: str = None) -> str or None:
 
     if is_platform_windows():
         return base_name + Extension.EXE.value
-    elif is_platform_darwin():
-        return base_name + Extension.APP.value
     else:
         return base_name
