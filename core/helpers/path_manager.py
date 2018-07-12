@@ -45,7 +45,7 @@ class PathManager:
         if app_full_name in all_executables.keys():
             return all_executables[app_full_name]
         else:
-            raise Exception('Unable to find executable %s in %s' % (app_name, self.get_platform_applications_paths()))
+            raise Exception('Unable to find executable %s in %s' % (app_full_name, self.get_platform_applications_paths()))
 
     def get_img_assets(self, app_name: str = None) -> dict:
         image_assets_path = self.get_image_assets_path(app_name)
