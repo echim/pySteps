@@ -7,6 +7,7 @@ import pyautogui
 
 from core.default_settings import DefaultSettings
 from core.enums.color import Color
+from core.helpers.os_helpers import is_retina
 from core.helpers.point import Point
 from core.helpers.screen_rectangle import ScreenRectangle
 from core.highlight.highlight_rectangle import HighlightRectangle
@@ -35,12 +36,15 @@ def _match_template(asset_name: str, screen_coordinates: ScreenRectangle = None,
     asset_img = AssetImage(asset_name, _images[asset_name])
 
     res = cv2.matchTemplate(screen_img.image_gray_array, asset_img.image_gray_array, _cv_match_method)
-    min_val, max_val, min_location, best_match = cv2.minMaxLoc(res)
+    min_val, max_val, min_location, match = cv2.minMaxLoc(res)
 
     if max_val < precision:
         return None
     else:
-        found_at = Point(best_match[0], best_match[1])
+        if is_retina():
+            found_at = Point(match[0] / 2, match[1] / 2)
+        else:
+            found_at = Point(match[0], match[1])
 
         highlight = ScreenHighlight()
         highlight.draw_rectangle(HighlightRectangle(found_at, asset_img.width, asset_img.height, Color.GREEN, 2))

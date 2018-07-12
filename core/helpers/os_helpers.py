@@ -1,4 +1,5 @@
 import os
+import subprocess
 import platform
 import time
 
@@ -60,6 +61,15 @@ def is_platform_darwin() -> bool:
 
 def is_platform_linux() -> bool:
     return get_os_platform() == OsPlatform.LINUX
+
+
+def is_retina() -> bool:
+    if is_platform_darwin():
+        return subprocess.call(
+            ["system_profiler SPDisplaysDataType | grep -E 'retina|Retina'"],
+            stdout=subprocess.DEVNULL, shell=True) == 0
+    else:
+        return False
 
 
 def get_app_base_name(app_name: str = None) -> str or None:
