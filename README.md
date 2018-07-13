@@ -5,7 +5,7 @@ Generic python automation framework with PyAutogui, OpenCV and Tesseract-OCR for
     * pip3 install pyobjc
 
 * **Windows 10 Pro requirements:**
-    Install tesseract 4.0.0-beta.1 as described [here](../tesseract-windows-install.md)
+    Install tesseract 4.0.0-beta.1 as described [here](../master/tesseract-windows-install.md)
 
 * **Ubuntu 18.04 LTS requirements:**
     * sudo apt-get install build-essential

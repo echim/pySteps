@@ -51,5 +51,5 @@ but slightly changed to provide more details
         * Download [traineddata](https://github.com/tesseract-ocr/tessdata/blob/master/osd.traineddata) to **C:\tesseract\Win64\bin\Release\tessdata**
 
     * Create new configs folder in **C:\tesseract\Win64\bin\Release\tessdata**
-        * Copy [hocr](../hocr) file in **C:\tesseract\Win64\bin\Release\tessdata\configs**
-        * Copy [tsv](../tsv) file in **C:\tesseract\Win64\bin\Release\tessdata\configs**
+        * Copy [hocr](../master/hocr) file in **C:\tesseract\Win64\bin\Release\tessdata\configs**
+        * Copy [tsv](../master/tsv) file in **C:\tesseract\Win64\bin\Release\tessdata\configs**
