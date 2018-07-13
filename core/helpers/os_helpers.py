@@ -63,6 +63,10 @@ def is_platform_linux() -> bool:
     return get_os_platform() == OsPlatform.LINUX
 
 
+def platform_is_other_than_windows() -> bool:
+    return not is_platform_windows()
+
+
 def is_retina() -> bool:
     if is_platform_darwin():
         return subprocess.call(
