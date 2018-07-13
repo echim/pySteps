@@ -1,7 +1,7 @@
 import time
 
 import pyautogui
-from core.helpers.os_helpers import is_platform_darwin, is_platform_linux, is_platform_windows
+from core.helpers.os_helpers import platform_is_darwin, platform_is_linux, platform_is_windows
 
 
 def wait_window_maximize_finish():
@@ -23,17 +23,17 @@ def type_with_delay(*args):
 
 
 def close_current_window():
-    if is_platform_windows():
+    if platform_is_windows():
         type_with_delay('alt', 'space', 'c')
-    if is_platform_linux():
+    if platform_is_linux():
         type_with_delay('alt', 'f4')
     wait_window_close_finish()
 
 
 def maximize_current_window():
-    if is_platform_windows():
+    if platform_is_windows():
         type_with_delay('alt', 'space', 'x')
-    if is_platform_linux():
+    if platform_is_linux():
         type_with_delay('apps', 'up')
 
     wait_window_maximize_finish()

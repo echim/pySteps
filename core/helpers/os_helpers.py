@@ -51,24 +51,24 @@ def get_os_platform() -> OsPlatform:
         raise Exception('Unknown os platform')
 
 
-def is_platform_windows() -> bool:
+def platform_is_windows() -> bool:
     return get_os_platform() == OsPlatform.WINDOWS
 
 
-def is_platform_darwin() -> bool:
+def platform_is_darwin() -> bool:
     return get_os_platform() == OsPlatform.DARWIN
 
 
-def is_platform_linux() -> bool:
+def platform_is_linux() -> bool:
     return get_os_platform() == OsPlatform.LINUX
 
 
 def platform_is_other_than_windows() -> bool:
-    return not is_platform_windows()
+    return not platform_is_windows()
 
 
 def is_retina() -> bool:
-    if is_platform_darwin():
+    if platform_is_darwin():
         return subprocess.call(
             ["system_profiler SPDisplaysDataType | grep -E 'retina|Retina'"],
             stdout=subprocess.DEVNULL, shell=True) == 0
@@ -91,7 +91,7 @@ def get_app_full_name(app_name: str = None) -> str or None:
 
     base_name: str = get_app_base_name(app_name)
 
-    if is_platform_windows():
+    if platform_is_windows():
         return base_name + Extension.EXE.value
     else:
         return base_name

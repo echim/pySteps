@@ -3,8 +3,8 @@ import os
 from core.default_settings import DefaultSettings
 from core.enums.default_paths import DefaultPaths
 from core.enums.extension import Extension
-from core.helpers.os_helpers import OsPlatform, get_os_platform, get_project_root_path, load_files, is_platform_windows, \
-    get_app_full_name, get_app_base_name, is_platform_darwin, is_platform_linux
+from core.helpers.os_helpers import OsPlatform, get_os_platform, get_project_root_path, load_files, platform_is_windows, \
+    get_app_full_name, get_app_base_name, platform_is_darwin, platform_is_linux
 
 
 class PathManager:
@@ -16,11 +16,11 @@ class PathManager:
             else:
                 raise Exception('Path not found: %s' % self.custom_executable_path)
         else:
-            if is_platform_windows():
+            if platform_is_windows():
                 app_paths = DefaultPaths[OsPlatform.WINDOWS.name].value['APPLICATIONS']
-            elif is_platform_linux():
+            elif platform_is_linux():
                 app_paths = DefaultPaths[OsPlatform.LINUX.name].value['APPLICATIONS']
-            elif is_platform_darwin():
+            elif platform_is_darwin():
                 app_paths = DefaultPaths[OsPlatform.DARWIN.name].value['APPLICATIONS']
             else:
                 raise Exception('Unknown app paths for %s platform' % self.platform.value)

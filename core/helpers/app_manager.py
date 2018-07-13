@@ -4,9 +4,9 @@ import subprocess
 from core.default_settings import DefaultSettings
 from core.helpers.app_details import AppDetails
 from core.helpers.os_helpers import get_app_full_name
-from core.helpers.os_helpers import is_platform_linux, is_platform_windows
+from core.helpers.os_helpers import platform_is_linux, platform_is_windows
 from core.image_search.screen import Screen
-from core.keyboard_commands.keyboard_commands import maximize_current_window, close_current_window, is_platform_darwin
+from core.keyboard_commands.keyboard_commands import maximize_current_window, close_current_window, platform_is_darwin
 
 
 class AppManager:
@@ -35,7 +35,7 @@ class AppManager:
         if extra_params is not None and isinstance(extra_params, str):
             launch_cmd.append(extra_params)
 
-        if is_platform_darwin():
+        if platform_is_darwin():
             launch_cmd = "open -a %s --args %s" % (self._app_details.app_name, extra_params)
 
         subprocess.Popen(launch_cmd, shell=True)
@@ -47,9 +47,9 @@ class AppManager:
         close_current_window()
 
         app_full_name = get_app_full_name(self.app_name)
-        if is_platform_windows():
+        if platform_is_windows():
             os.system('taskkill /f /im  %s' % app_full_name)
-        elif is_platform_linux():
+        elif platform_is_linux():
             os.system('pkill %s' % app_full_name)
-        elif is_platform_darwin():
+        elif platform_is_darwin():
             os.system('killall %s' % app_full_name)

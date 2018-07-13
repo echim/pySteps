@@ -2,7 +2,7 @@ from tkinter import *
 
 from core.highlight.highlight_circle import HighlightCircle
 from core.highlight.highlight_rectangle import HighlightRectangle
-from core.helpers.os_helpers import is_platform_windows, is_platform_linux
+from core.helpers.os_helpers import platform_is_windows, platform_is_linux
 
 
 def _draw_circle(self, x, y, r, **kwargs):
@@ -52,10 +52,10 @@ class ScreenHighlight:
         Canvas.draw_circle = _draw_circle
         Canvas.draw_rectangle = _draw_rectangle
 
-        if is_platform_windows():
+        if platform_is_windows():
             self.root.wm_attributes("-transparentcolor", "white")
 
-        if is_platform_linux():
+        if platform_is_linux():
             self.root.wait_visibility(self.root)
             self.root.attributes('-alpha', 0.9)
 
