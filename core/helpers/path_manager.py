@@ -3,8 +3,8 @@ import os
 from core.default_settings import DefaultSettings
 from core.enums.default_paths import DefaultPaths
 from core.enums.extension import Extension
-from core.helpers.os_helpers import OsPlatform, get_os_platform, get_project_root_path, load_files, platform_is_windows, \
-    get_app_full_name, get_app_base_name, platform_is_darwin, platform_is_linux
+from core.helpers.os_helpers import get_os_platform, get_project_root_path, load_files, get_app_full_name, \
+    get_app_base_name
 
 
 class PathManager:
@@ -16,16 +16,7 @@ class PathManager:
             else:
                 raise Exception('Path not found: %s' % self.custom_executable_path)
         else:
-            if platform_is_windows():
-                app_paths = DefaultPaths[OsPlatform.WINDOWS.name].value['APPLICATIONS']
-            elif platform_is_linux():
-                app_paths = DefaultPaths[OsPlatform.LINUX.name].value['APPLICATIONS']
-            elif platform_is_darwin():
-                app_paths = DefaultPaths[OsPlatform.DARWIN.name].value['APPLICATIONS']
-            else:
-                raise Exception('Unknown app paths for %s platform' % self.platform.value)
-
-            return app_paths
+            return DefaultPaths[get_os_platform().name].value['APPLICATIONS']
 
     @staticmethod
     def get_image_assets_path(app_name: str = None) -> list:
@@ -45,7 +36,8 @@ class PathManager:
         if app_full_name in all_executables.keys():
             return all_executables[app_full_name]
         else:
-            raise Exception('Unable to find executable %s in %s' % (app_full_name, self.get_platform_applications_paths()))
+            raise Exception(
+                'Unable to find executable %s in %s' % (app_full_name, self.get_platform_applications_paths()))
 
     def get_img_assets(self, app_name: str = None) -> dict:
         image_assets_path = self.get_image_assets_path(app_name)

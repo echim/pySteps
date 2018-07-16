@@ -6,6 +6,7 @@ from core.helpers.point import Point
 from core.helpers.screen_rectangle import ScreenRectangle
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.image_search import image_find, image_find_all, image_wait
+from core.text_search.text_search import region_to_string
 
 
 class Region:
@@ -34,3 +35,6 @@ class Region:
     def image_wait(self, image_name: str, precision: int = None, wait_seconds: float = None) -> Point or Exception:
         self.highlight()
         return image_wait(image_name, self._region_area, precision, wait_seconds)
+
+    def get_text(self) -> str:
+        return region_to_string(self._region_area)

@@ -20,8 +20,6 @@ _cv_match_method = cv2.TM_CCOEFF_NORMED
 _images = {}
 
 
-# pytesseract.pytesseract.tesseract_cmd
-
 def update_image_assets(new_images: dict):
     global _images
     _images = new_images

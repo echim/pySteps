@@ -5,7 +5,7 @@ from core.default_settings import DefaultSettings
 from core.helpers.app_details import AppDetails
 from core.helpers.os_helpers import get_app_full_name
 from core.helpers.os_helpers import platform_is_linux, platform_is_windows
-from core.image_search.screen import Screen
+from core.screen.screen import Screen
 from core.keyboard_commands.keyboard_commands import maximize_current_window, close_current_window, platform_is_darwin
 
 

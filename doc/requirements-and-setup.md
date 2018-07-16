@@ -31,7 +31,7 @@
 
 * sudo apt install scrot
 
-* pip install python3-xlib ( in case of from Xlib.display import Display error )
+* pip3 install python3-xlib ( in case of from Xlib.display import Display error )
 
 > Run pySteps
 1. Install virtualenv:
