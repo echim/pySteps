@@ -3,7 +3,7 @@ import numpy as np
 from pyautogui import screenshot
 from pyautogui import size as get_screen_size
 
-from core.helpers.screen_rectangle import ScreenRectangle
+from core.screen.screen_rectangle import ScreenRectangle
 
 
 class ScreenshotImage:

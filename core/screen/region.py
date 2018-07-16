@@ -3,10 +3,11 @@ from typing import List
 
 from core.default_settings import DefaultSettings
 from core.helpers.point import Point
-from core.helpers.screen_rectangle import ScreenRectangle
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.image_search import image_find, image_find_all, image_wait
-from core.text_search.text_search import region_to_string
+from core.screen.screen_rectangle import ScreenRectangle
+from core.text_search.ocr_result import OcrResult
+from core.text_search.text_search import region_to_string, region_to_data
 
 
 class Region:
@@ -38,3 +39,6 @@ class Region:
 
     def get_text(self) -> str:
         return region_to_string(self._region_area)
+
+    def get_ocr_results(self) -> List[OcrResult]:
+        return region_to_data(self._region_area)

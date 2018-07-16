@@ -9,7 +9,7 @@ from core.default_settings import DefaultSettings
 from core.enums.color import Color
 from core.helpers.os_helpers import is_retina
 from core.helpers.point import Point
-from core.helpers.screen_rectangle import ScreenRectangle
+from core.screen.screen_rectangle import ScreenRectangle
 from core.highlight.highlight_rectangle import HighlightRectangle
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.asset_image import AssetImage
@@ -28,7 +28,7 @@ def update_image_assets(new_images: dict):
 def _match_template(asset_name: str, screen_coordinates: ScreenRectangle = None,
                     precision: int = None) -> Point or None:
     if precision is None:
-        precision = DefaultSettings.SEARCH_PRECISION.value
+        precision = DefaultSettings.SEARCH_MIN_PRECISION.value
 
     screen_img = ScreenshotImage(screen_coordinates)
     asset_img = AssetImage(asset_name, _images[asset_name])
@@ -56,7 +56,7 @@ def _match_template(asset_name: str, screen_coordinates: ScreenRectangle = None,
 def _match_template_multiple(asset_name: str, screen_coordinates: ScreenRectangle, precision: int = None,
                              threshold: int = None) -> List[Point]:
     if precision is None:
-        precision = DefaultSettings.SEARCH_PRECISION.value
+        precision = DefaultSettings.SEARCH_MIN_PRECISION.value
     if threshold is None:
         threshold = DefaultSettings.SEARCH_THRESHOLD.value
 
