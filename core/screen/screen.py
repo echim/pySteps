@@ -1,5 +1,6 @@
 from typing import List
 
+from core.enums.tesseract_language_code import LanguageCode
 from core.helpers.point import Point
 from core.image_search.image_search import image_find, image_find_all, image_wait
 from core.text_search.ocr_result import OcrResult
@@ -20,9 +21,9 @@ class Screen:
         return image_wait(image_name, None, precision, wait_seconds)
 
     @staticmethod
-    def get_text() -> str:
-        return image_to_string()
+    def get_text(lang: LanguageCode = None) -> str:
+        return image_to_string(lang=lang)
 
     @staticmethod
-    def get_ocr_results() -> List[OcrResult]:
-        return image_to_data()
+    def get_ocr_results(lang: LanguageCode = None) -> List[OcrResult]:
+        return image_to_data(lang=lang)

@@ -1,4 +1,5 @@
 from enum import Enum
+from core.enums.tesseract_language_code import LanguageCode
 
 
 class DefaultSettings(Enum):
@@ -8,4 +9,5 @@ class DefaultSettings(Enum):
     HIGHLIGHT_DURATION = 0.4
     HIGHLIGHT_THICKNESS = 5
     OCR_MIN_CONFIDENCE = 50
+    OCR_LANGUAGE = LanguageCode.ENGLISH.value
     CONFIRM_LAUNCH_NAME = 'confirm_app_launch.png'

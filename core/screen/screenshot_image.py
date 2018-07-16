@@ -16,14 +16,14 @@ class ScreenshotImage:
 
         screen_pil_image = screenshot(region=region_coordinates)
 
-        self._image_gray_array = cv2.cvtColor(np.array(screen_pil_image), cv2.COLOR_BGR2GRAY)
-        height, width = self._image_gray_array.shape
+        self._gray_array = cv2.cvtColor(np.array(screen_pil_image), cv2.COLOR_BGR2GRAY)
+        height, width = self._gray_array.shape
         self._width = width
         self._height = height
 
     @property
     def image_gray_array(self):
-        return self._image_gray_array
+        return self._gray_array
 
     @property
     def width(self) -> int:
@@ -32,3 +32,7 @@ class ScreenshotImage:
     @property
     def height(self) -> int:
         return self._height
+
+    def binarize(self):
+        # img2 = cv2.adaptiveThreshold(self._gray_array, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+        return cv2.threshold(self._gray_array, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]

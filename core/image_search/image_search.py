@@ -13,7 +13,7 @@ from core.screen.screen_rectangle import ScreenRectangle
 from core.highlight.highlight_rectangle import HighlightRectangle
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.asset_image import AssetImage
-from core.image_search.screenshot_image import ScreenshotImage
+from core.screen.screenshot_image import ScreenshotImage
 
 pyautogui.FAILSAFE = False
 _cv_match_method = cv2.TM_CCOEFF_NORMED
