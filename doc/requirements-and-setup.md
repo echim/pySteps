@@ -1,5 +1,6 @@
 > **macOS High Sierra requirements:**
-
+* Install python 3.6.6 [link](https://www.python.org/downloads/release/python-366/)
+* Install tesseract 4.0.0-beta.1 as described [here](https://github.com/tesseract-ocr/tesseract/wiki/Compiling#macos)
 * pip3 install pyobjc-core
 * pip3 install pyobjc
 
