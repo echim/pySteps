@@ -6,7 +6,7 @@
 > **Windows 10 Pro requirements:**
 
 * Install python 3.6.6 [link](https://www.python.org/downloads/release/python-366/)
-* Install tesseract 4.0.0-beta.1 as described [here](../master/doc/tesseract-windows-install.md)
+* Install tesseract 4.0.0-beta.1 as described [here](../doc/tesseract-windows-install.md)
 
 > **Ubuntu 18.04 LTS requirements:**
 
