@@ -15,6 +15,7 @@ def test_with_debug():
     pass
 
 
+# Firefox without selenium example
 def test_image_search():
     app_manager: AppManager = pytest.app_manager
     app_manager.launch_app('-foreground -new-instace')

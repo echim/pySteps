@@ -15,7 +15,7 @@ def pytest_runtest_setup(item):
 def load_app_manager(request):
     # called once at beginning
 
-    app_details = AppDetails(AppName.MICROSOFT_EDGE)
+    app_details = AppDetails(AppName.EDGE)
     app_manager: AppManager = AppManager(app_details, with_web_driver=True)
     update_image_assets(app_manager.get_image_assets())
 

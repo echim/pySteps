@@ -24,7 +24,7 @@ class Region:
             seconds = DefaultSettings.HIGHLIGHT_DURATION.value
 
         highlight.render(int(seconds * 1000))
-        time.sleep(seconds)
+        # time.sleep(seconds)
 
     def image_find(self, image_name: str, precision: int = None) -> Point or Exception:
         self.highlight()

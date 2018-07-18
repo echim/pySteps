@@ -10,7 +10,7 @@ from core.image_search.image_search import update_image_assets
 def load_app_manager(request):
     # called once at beginning
 
-    app_details = AppDetails(AppName.INTERNET_EXPLORER, True)
+    app_details = AppDetails(AppName.NOTEPAD, True)
     app_manager: AppManager = AppManager(app_details)
 
     update_image_assets(app_manager.get_image_assets())
