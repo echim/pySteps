@@ -29,6 +29,8 @@ def test_open_about_notepad():
     left_corner = Region(Point(0, 0), 500, 500)
     left_corner.highlight(2)
 
-    left_corner.image_find('logo_big.png')
+    left_corner.move_pointer_to_image('logo_big.png')
+    move_pointer(Point(0, 0))
+    close_current_window()
 
     app_manager.close_app()

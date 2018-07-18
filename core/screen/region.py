@@ -5,6 +5,7 @@ from core.enums.tesseract_language_code import LanguageCode
 from core.helpers.point import Point
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.image_search import image_find, image_find_all, image_wait
+from core.mouse_commands.mouse_commands import move_pointer, move_pointer_to_image
 from core.screen.screen_rectangle import ScreenRectangle
 from core.text_search.ocr_result import OcrResult
 from core.text_search.text_search import region_to_string, region_to_data
@@ -33,12 +34,19 @@ class Region:
         self.highlight()
         return image_find_all(image_name, self._region_area, precision)
 
-    def image_wait(self, image_name: str, precision: int = None, wait_seconds: float = None) -> Point or Exception:
+    def image_wait(self, image_name: str, wait_seconds: float = None, precision: int = None) -> Point or Exception:
         self.highlight()
-        return image_wait(image_name, self._region_area, precision, wait_seconds)
+        return image_wait(image_name, wait_seconds, self._region_area, precision)
 
     def get_text(self, lang: LanguageCode = None) -> str:
         return region_to_string(self._region_area, lang)
 
     def get_ocr_results(self, lang: LanguageCode = None) -> List[OcrResult]:
         return region_to_data(self._region_area, lang)
+
+    @staticmethod
+    def move_pointer(destination: Point):
+        move_pointer(destination)
+
+    def move_pointer_to_image(self, image_name: str):
+        move_pointer_to_image(image_name, self._region_area)

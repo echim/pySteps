@@ -4,9 +4,9 @@ import subprocess
 from core.default_settings import DefaultSettings
 from core.helpers.app_details import AppDetails
 from core.helpers.os_helpers import get_app_full_name
-from core.helpers.os_helpers import platform_is_linux, platform_is_windows
+from core.helpers.os_helpers import platform_is_linux, platform_is_windows, platform_is_darwin
 from core.helpers.webdriver_helpers import get_webdriver_by_app_name
-from core.keyboard_commands.keyboard_commands import maximize_current_window, close_current_window, platform_is_darwin
+from core.keyboard_commands.keyboard_commands import maximize_current_window, close_current_window
 from core.screen.screen import Screen
 
 
