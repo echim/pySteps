@@ -9,10 +9,10 @@ from core.default_settings import DefaultSettings
 from core.enums.color import Color
 from core.helpers.os_helpers import is_retina
 from core.helpers.point import Point
-from core.screen.screen_rectangle import ScreenRectangle
 from core.highlight.highlight_rectangle import HighlightRectangle
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.asset_image import AssetImage
+from core.screen.screen_rectangle import ScreenRectangle
 from core.screen.screenshot_image import ScreenshotImage
 
 pyautogui.FAILSAFE = False

@@ -1,4 +1,5 @@
 from enum import Enum
+
 from core.enums.tesseract_language_code import LanguageCode
 
 

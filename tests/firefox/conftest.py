@@ -1,8 +1,8 @@
 import pytest
 
+from core.enums.app_name import AppName
 from core.helpers.app_details import AppDetails
 from core.helpers.app_manager import AppManager
-from core.enums.app_name import AppName
 from core.image_search.image_search import update_image_assets
 
 

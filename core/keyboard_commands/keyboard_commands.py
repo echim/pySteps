@@ -1,7 +1,8 @@
 import time
 
 import pyautogui
-from core.helpers.os_helpers import platform_is_darwin, platform_is_linux, platform_is_windows
+
+from core.helpers.os_helpers import platform_is_linux, platform_is_windows
 
 
 def wait_window_maximize_finish():

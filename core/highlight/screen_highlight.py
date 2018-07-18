@@ -1,8 +1,8 @@
 from tkinter import *
 
+from core.helpers.os_helpers import platform_is_windows, platform_is_linux
 from core.highlight.highlight_circle import HighlightCircle
 from core.highlight.highlight_rectangle import HighlightRectangle
-from core.helpers.os_helpers import platform_is_windows, platform_is_linux
 
 
 def _draw_circle(self, x, y, r, **kwargs):

@@ -1,9 +1,9 @@
 import pytest
 from pyautogui import typewrite, hotkey
 
+from core.enums.tesseract_language_code import LanguageCode
 from core.helpers.app_manager import AppManager
 from core.screen.screen import Screen
-from core.enums.tesseract_language_code import LanguageCode
 
 
 def check_ocr_for_word(word: str):

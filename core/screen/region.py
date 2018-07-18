@@ -1,13 +1,12 @@
-import time
 from typing import List
 
 from core.default_settings import DefaultSettings
+from core.enums.tesseract_language_code import LanguageCode
 from core.helpers.point import Point
 from core.highlight.screen_highlight import ScreenHighlight
 from core.image_search.image_search import image_find, image_find_all, image_wait
 from core.screen.screen_rectangle import ScreenRectangle
 from core.text_search.ocr_result import OcrResult
-from core.enums.tesseract_language_code import LanguageCode
 from core.text_search.text_search import region_to_string, region_to_data
 
 
