@@ -36,7 +36,10 @@ class AppManager:
     def launch_app(self, extra_params: str = None):
 
         if self._driver:
-            self.browser = get_webdriver_by_app_name(self.app_name)
+            try:
+                self.browser = get_webdriver_by_app_name(self.app_name)
+            except Exception:
+                raise Exception('Unable to launch %s , please close any previous instance.' % self.app_name)
             Screen.image_wait(DefaultSettings.CONFIRM_LAUNCH_NAME.value, wait_seconds=10.0)
             self.browser.maximize_window()
         else:
@@ -54,7 +57,10 @@ class AppManager:
 
     def close_app(self):
         if self._driver:
-            self.browser.quit()
+            try:
+                self.browser.quit()
+            except:
+                pass
         else:
             close_current_window()
 

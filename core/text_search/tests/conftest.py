@@ -17,6 +17,6 @@ def load_app_manager(request):
     pytest.app_manager = app_manager
 
     def clear_app_manager():
-        pytest.app_manager = None
+        pytest.app_manager.close_app()
 
     request.addfinalizer(clear_app_manager)
