@@ -12,3 +12,4 @@ class DefaultSettings(Enum):
     OCR_MIN_CONFIDENCE = 50
     OCR_LANGUAGE = LanguageCode.ENGLISH.value
     CONFIRM_LAUNCH_NAME = 'confirm_app_launch.png'
+    LOG_FILE_NAME = 'pyTest_runs.log'

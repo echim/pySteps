@@ -6,3 +6,4 @@ __pycache__/
 .idea/
 vnv/
 geckodriver.log
+pyTest_runs.log
