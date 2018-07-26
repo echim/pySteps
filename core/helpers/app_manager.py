@@ -37,11 +37,12 @@ class AppManager:
 
         if self._driver:
             try:
-                self.browser = get_webdriver_by_app_name(self.app_name)
-            except Exception:
-                raise Exception('Unable to launch %s , please close any previous instance.' % self.app_name)
-            Screen.image_wait(DefaultSettings.CONFIRM_LAUNCH_NAME.value, wait_seconds=10.0)
+                self.browser = get_webdriver_by_app_name(self.app_name, extra_params)
+            except Exception as error:
+                raise Exception('Unable to launch %s , please close any previous instance. %s' % (self.app_name, error))
+            
             self.browser.maximize_window()
+            Screen.image_wait(DefaultSettings.CONFIRM_LAUNCH_NAME.value, wait_seconds=10.0)
         else:
             launch_cmd = [self._app_details.app_path]
             if extra_params is not None and isinstance(extra_params, str):

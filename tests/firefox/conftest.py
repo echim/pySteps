@@ -23,7 +23,7 @@ def load_app_manager(request):
     # called once at beginning
 
     app_details = AppDetails(AppName.FIREFOX, True)
-    app_manager: AppManager = AppManager(app_details)
+    app_manager: AppManager = AppManager(app_details, with_web_driver=True)
 
     update_image_assets(app_manager.get_image_assets())
     pytest.app_manager = app_manager
