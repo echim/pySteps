@@ -1,21 +1,14 @@
 import pytest
 
 from core.enums.app_name import AppName
-from core.enums.pytest_outcome import TestOutcome
 from core.helpers.app_details import AppDetails
 from core.helpers.app_manager import AppManager
+from core.helpers.test_collector import TestReport, collect_test_results
 from core.image_search.image_search import update_image_assets
 
 
-def pytest_runtest_logreport(report):
-    if report.when == 'call':
-        test_results = {
-            'test': report.nodeid,
-            'status': report.outcome,
-            'duration': report.duration
-        }
-        if report.outcome == TestOutcome.FAILED.value:
-            test_results['error'] = report.longrepr
+def pytest_runtest_logreport(report: TestReport):
+    return collect_test_results(report)
 
 
 @pytest.fixture(scope="session", autouse=True)
