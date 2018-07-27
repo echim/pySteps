@@ -5,8 +5,9 @@ from core.default_settings import DefaultSettings
 from core.helpers.app_details import AppDetails
 from core.helpers.os_helpers import get_app_full_name
 from core.helpers.os_helpers import platform_is_linux, platform_is_windows, platform_is_darwin
-from core.helpers.webdriver_helpers import get_webdriver_by_app_name
-from core.keyboard_commands.keyboard_commands import maximize_current_window, close_current_window
+from core.helpers.webdriver_helpers import get_driver_by_app_name
+from core.keyboard_commands.keyboard_commands import maximize_current_window, close_current_window, \
+    wait_window_maximize_finish
 from core.screen.screen import Screen
 
 
@@ -37,11 +38,12 @@ class AppManager:
 
         if self._driver:
             try:
-                self.browser = get_webdriver_by_app_name(self.app_name, extra_params)
+                self.browser = get_driver_by_app_name(self.app_name, extra_params)
             except Exception as error:
                 raise Exception('Unable to launch %s , please close any previous instance. %s' % (self.app_name, error))
-            
+
             self.browser.maximize_window()
+            wait_window_maximize_finish()
             Screen.image_wait(DefaultSettings.CONFIRM_LAUNCH_NAME.value, wait_seconds=10.0)
         else:
             launch_cmd = [self._app_details.app_path]

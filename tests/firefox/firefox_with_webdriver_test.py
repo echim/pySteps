@@ -18,7 +18,7 @@ def test_with_debug():
 # Firefox without selenium example
 def test_image_search():
     app_manager: AppManager = pytest.app_manager
-    app_manager.launch_app('-foreground -new-instace -private')
+    app_manager.launch_app('-foreground -new-instance -private')
 
     found_coord = Screen.image_find('reload.png')
     assert isinstance(found_coord, Point)

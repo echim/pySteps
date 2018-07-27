@@ -13,9 +13,7 @@ def pytest_runtest_logreport(report: TestReport):
 
 @pytest.fixture(scope="session", autouse=True)
 def load_app_manager(request):
-    # called once at beginning
-
-    app_details = AppDetails(AppName.EDGE, with_custom_path=False)
+    app_details = AppDetails(AppName.CHROME, with_custom_path=False)
     app_manager: AppManager = AppManager(app_details, with_web_driver=True)
 
     update_image_assets(app_manager.get_image_assets())

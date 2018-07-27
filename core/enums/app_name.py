@@ -6,3 +6,4 @@ class AppName(Enum):
     INTERNET_EXPLORER = 'iexplore'
     EDGE = 'edge'
     NOTEPAD = 'notepad'
+    CHROME = 'chrome'

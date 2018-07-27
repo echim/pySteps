@@ -33,7 +33,7 @@ but slightly changed to provide more details
 * cppan --generate .
 
 * Open tesseract.sln from Visual Studio
-    1. File -> Open -> Project/Solution ( select **C:\tesseract\Win64\tesseract.sln** )
+    1. File -> Open -> Project/Solution ( select **C:\tesseract\build\tesseract.sln** )
     2. Right click on tesseract solution ( from Solution Explorer )
         * Select Configuration Properties ( left dropdown)
         * Select C/C++ ( dropdown )
@@ -43,15 +43,15 @@ but slightly changed to provide more details
     3. From Solution Configuration ( Debug might be selected ) select Release
     4. From Build menu click Build Solution
 
-* The build output is located at **C:\tesseract\Win64\bin\Release**
+* The build output is located at **C:\tesseract\build\bin\Release**
     * Add this to the system PATH ( restart might be required )
 
 * Check version
     * tesseract --version output should print: tesseract 4.0.0-beta.1 
 
-* Create tessdata folder in 'C:\tesseract\Win64\bin\Release'
-    * Download [traineddata](https://github.com/tesseract-ocr/tessdata/blob/master/eng.traineddata) to **C:\tesseract\Win64\bin\Release\tessdata**
-    * Download [traineddata](https://github.com/tesseract-ocr/tessdata/blob/master/osd.traineddata) to **C:\tesseract\Win64\bin\Release\tessdata**
+* Create tessdata folder in 'C:\tesseract\build\bin\Release'
+    * Download [traineddata](https://github.com/tesseract-ocr/tessdata/blob/master/eng.traineddata) to **C:\tesseract\build\bin\Release\tessdata**
+    * Download [traineddata](https://github.com/tesseract-ocr/tessdata/blob/master/osd.traineddata) to **C:\tesseract\build\bin\Release\tessdata**
 
 * Create new configs folder in **C:\tesseract\Win64\bin\Release\tessdata**
     * Copy [hocr](https://github.com/tesseract-ocr/tesseract/blob/a75ab450a8cc9a2b69cf05f5c4f7a39bc44cbacc/tessdata/configs/hocr) file in **C:\tesseract\Win64\bin\Release\tessdata\configs**
