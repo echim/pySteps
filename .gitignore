@@ -36,33 +36,4 @@ pyTest_runs.log
 .DS_Store
 Thumbs.db
 
-# test-runner-app ignored files START
-# compiled output
-test-runner-app/dist
-test-runner-app/tmp
-test-runner-app/out-tsc
-test-runner-app/app-builds
-test-runner-app/main.js
-
-# dependencies
-test-runner-app/node_modules
-
-# misc
-test-runner-app/.sass-cache
-test-runner-app/connect.lock
-test-runner-app/coverage
-test-runner-app/libpeerconnection.log
-test-runner-app/npm-debug.log
-test-runner-app/testem.log
-test-runner-app/typings
-test-runner-app/package-lock.json
-
-# e2e
-test-runner-app/e2e/*.js
-!test-runner-app/e2e/protractor.conf.js
-test-runner-app/e2e/*.map
-
-# test-runner-app ignored files END
-
-
 
