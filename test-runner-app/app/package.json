@@ -1,0 +1,18 @@
+{
+  "name": "electron-pysteps-tests-manager",
+  "productName": "pySteps Tests Manager",
+  "version": "0.0.1",
+  "description": "Tests manager and statistics",
+  "main": "./main.prod.js",
+  "author": {
+    "name": "George Echim",
+    "email": "george.echim@gmail.com",
+    "url": "https://github.com/echim"
+  },
+  "scripts": {
+    "electron-rebuild": "node -r babel-register ../internals/scripts/ElectronRebuild.js",
+    "postinstall": "npm run electron-rebuild"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}
