@@ -5,7 +5,7 @@ __pycache__/
 *$py.class
 vnv/
 geckodriver.log
-pyTest_runs.log
+tests/pyTest_runs.json
 
 # IDEs and editors
 .project
