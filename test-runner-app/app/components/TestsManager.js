@@ -6,19 +6,24 @@ import { Redirect } from 'react-router';
 import { isNull } from 'util';
 var fs = require('fs');
 var path = require('path')
+var shell = require('shelljs');
+const exec = require("child_process").exec;
+const { remote, BrowserWindow } = require('electron')
 
 type Props = {};
 
 export default class TestsManager extends Component<Props> {
 
-  constructor(props) {
+  mainWindow: BrowserWindow;
+
+  constructor(props, mainWindow: BrowserWindow) {
     super(props);
     this.state = {
       testsPath: localStorage.getItem('tests_path') || null,
       testResults: null
     }
-
     this.loadTestResults()
+    this.mainWindow = remote.getCurrentWindow()
   }
 
   render() {
@@ -30,7 +35,7 @@ export default class TestsManager extends Component<Props> {
       <div>
         <button onClick={this.resetTestsPath}>Clear tests path</button>
         <button onClick={this.reloadPage}>Reload</button>
-        <p>Tests path: {this.state.testsPath}</p>
+        <p>Tests path: {this.state.testsPath} <button onClick={() => this.runTest('')}>Run all tests</button></p>
 
         <table>
           <thead></thead>
@@ -52,9 +57,20 @@ export default class TestsManager extends Component<Props> {
                       <td>
                         <p className={test.status} >{test.status}</p>
                       </td>
+                      <td>
+                        -
+                      </td>
+                      <td>
+                        <button onClick={() => this.runTest(test.test)}>Run again</button>
+                      </td>
                     </tr>
                   )
-                }) : null
+                }) :
+                <tr>
+                  <td>
+                    <p>No tests runned yet </p>
+                  </td>
+                </tr>
             }
           </tbody>
         </table>
@@ -63,6 +79,26 @@ export default class TestsManager extends Component<Props> {
     )
   }
 
+  runTest = (id) => {
+    if (shell.which('python')) {
+      this.mainWindow.hide()
+      const command = '..\\vnv\\Scripts\\python.exe -m pytest ' + id;
+      exec(command, { cwd: this.state.testsPath }, (error, stdout, stderr) => {
+        if (error) {
+          console.log('error', error);
+        }
+        console.log('stdout', stdout);
+        console.log('stderr', stderr);
+        this.mainWindow.show()
+        this.reloadPage()
+      });
+
+    }
+    else {
+      alert('Please install python 3.6.6')
+    }
+
+  }
 
   loadTestResults = () => {
     if (isNull(this.state.testsPath)) {
@@ -71,9 +107,10 @@ export default class TestsManager extends Component<Props> {
     const filePath = path.join(this.state.testsPath, 'pyTest_runs.json')
 
     fs.readFile(filePath, 'utf8', (err, testResults) => {
-      if (err) {
+      if (err || testResults === '') {
         alert('Unable to load test results file.')
         throw new Error('Unable to load test results file.')
+        return;
       }
       this.setState({
         testResults: JSON.parse(testResults)
