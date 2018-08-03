@@ -40,4 +40,8 @@ def collect_test_results(report: TestReport):
         if report.outcome == TestOutcome.FAILED.value:
             test_result['error'] = str(report.longrepr)
 
+        for extra_infos in report.user_properties:
+            if extra_infos and extra_infos[0]:
+                test_result[extra_infos[0]] = extra_infos[1]
+
         send_result_to_log_file(test_result)
