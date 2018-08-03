@@ -8,6 +8,11 @@
 
 * Install python 3.6.6 [link](https://www.python.org/downloads/release/python-366/)
 * Install tesseract 4.0.0-beta.1 as described [here](../docs/tesseract-windows-install.md)
+* Some tests ( for the browsers ) are using Selenium, more info [here](https://www.seleniumhq.org/docs/03_webdriver.jsp)
+    * Microsoft WebDriver can be found [here](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
+    * Firefox WebDriver can be found [here](https://github.com/mozilla/geckodriver/releases)
+    * Chrome WebDriver can be found [here](http://chromedriver.chromium.org/getting-started)
+
 
 > **Ubuntu 18.04 LTS requirements:**
 
