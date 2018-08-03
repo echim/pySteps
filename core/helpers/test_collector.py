@@ -1,4 +1,5 @@
-import datetime, json
+import datetime
+import json
 
 from _pytest.runner import TestReport
 

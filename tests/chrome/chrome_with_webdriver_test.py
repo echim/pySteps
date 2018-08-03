@@ -1,7 +1,9 @@
 from core.test_dependencies import *
 
 
-def test_chrome_demo():
+def test_chrome_demo(record_property):
+    record_property("description", 'This is a demo test for Chrome featuring the ocr get_text.')
+
     app_manager: AppManager = pytest.app_manager
     app_manager.launch_app('--no-experiments --window-position=0,0')
 

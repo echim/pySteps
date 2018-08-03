@@ -2,7 +2,9 @@ from core.test_dependencies import *
 
 
 @pytest.mark.skipif(platform_is_other_than_windows(), reason='Edge should only be tested on Windows')
-def test_image_search():
+def test_image_search(record_property):
+    record_property("description", 'This is a demo test for Edge.')
+
     app_manager: AppManager = pytest.app_manager
     app_manager.launch_app()
 

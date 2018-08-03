@@ -2,7 +2,9 @@ from core.test_dependencies import *
 
 
 @pytest.mark.skipif(platform_is_other_than_windows(), reason='notepad should only be tested on Windows')
-def test_get_text():
+def test_get_text(record_property):
+    record_property("description", 'This is a demo test for Notepad with OCR example.')
+
     app_manager: AppManager = pytest.app_manager
     app_manager.launch_app()
 
@@ -18,7 +20,9 @@ def test_get_text():
 
 
 @pytest.mark.skipif(platform_is_other_than_windows(), reason='notepad should only be tested on Windows')
-def test_open_about_notepad():
+def test_open_about_notepad(record_property):
+    record_property("description", 'This is a demo test for Notepad with image search example.')
+
     app_manager: AppManager = pytest.app_manager
     app_manager.launch_app()
 
