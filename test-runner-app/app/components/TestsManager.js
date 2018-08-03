@@ -32,24 +32,32 @@ export default class TestsManager extends Component<Props> {
         <button onClick={this.reloadPage}>Reload</button>
         <p>Tests path: {this.state.testsPath}</p>
 
-        <div>
-          {
-            this.state.testResults && this.state.testResults.tests ?
-              this.state.testResults.tests.map((test, index) => {
-                const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
-                const date = new Date(test.timestamp * 1000)
-                return (
-                  <div key={index}>
-                    <p>-------------------------------------------------------------------------------------------------</p>
-                    <p>Name: {test.test}</p>
-                    <p className={test.status} >Status: {test.status}</p>
-                    <p>Duration: {test.duration} seconds</p>
-                    <p>Run Date: {date.toLocaleDateString('en-US', options)}</p>
-                  </div>
-                )
-              }) : null
-          }
-        </div>
+        <table>
+          <thead></thead>
+          <tbody>
+            {
+              this.state.testResults && this.state.testResults.tests ?
+                this.state.testResults.tests.map((test, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>
+                        {test.test}
+                      </td>
+                      <td>
+                        {test.description}
+                      </td>
+                      <td>
+                        {test.duration.toFixed(2)}
+                      </td>
+                      <td>
+                        <p className={test.status} >{test.status}</p>
+                      </td>
+                    </tr>
+                  )
+                }) : null
+            }
+          </tbody>
+        </table>
 
       </div>
     )
@@ -74,7 +82,7 @@ export default class TestsManager extends Component<Props> {
   }
 
   reloadPage = () => {
-    window.location.reload()
+    this.loadTestResults()
   }
 
   resetTestsPath = () => {
