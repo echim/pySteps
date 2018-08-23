@@ -42,8 +42,11 @@ class AppManager:
             except Exception as error:
                 raise Exception('Unable to launch %s , please close any previous instance. %s' % (self.app_name, error))
 
-            self.browser.maximize_window()
-            wait_window_maximize_finish()
+            try:
+                self.browser.maximize_window()
+                wait_window_maximize_finish()
+            except Exception:
+                pass
             Screen.image_wait(DefaultSettings.CONFIRM_LAUNCH_NAME.value, wait_seconds=10.0)
         else:
             launch_cmd = [self._app_details.app_path]
