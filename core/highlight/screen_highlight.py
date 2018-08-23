@@ -1,6 +1,6 @@
 from tkinter import *
 
-from core.helpers.os_helpers import platform_is_windows, platform_is_linux
+from core.helpers.os_helpers import platform_is_windows, platform_is_linux, platform_is_darwin
 from core.highlight.highlight_circle import HighlightCircle
 from core.highlight.highlight_rectangle import HighlightRectangle
 
@@ -41,10 +41,14 @@ class ScreenHighlight:
 
     def __init__(self):
         self.root = Tk()
-        self.root.overrideredirect(1)
 
         s_width = self.root.winfo_screenwidth()
         s_height = self.root.winfo_screenheight()
+
+        if platform_is_darwin():
+            self.root.wm_attributes('-topmost', True)
+        else:
+            self.root.overrideredirect(1)
 
         canvas = Canvas(self.root, width=s_width, height=s_height, borderwidth=0, highlightthickness=0, bg="white")
         canvas.grid()
@@ -58,5 +62,9 @@ class ScreenHighlight:
         if platform_is_linux():
             self.root.wait_visibility(self.root)
             self.root.attributes('-alpha', 0.9)
+
+        if platform_is_darwin():
+            self.root.wm_attributes('-transparent', True)
+            canvas.config(bg='systemTransparent')
 
         self.canvas = canvas
