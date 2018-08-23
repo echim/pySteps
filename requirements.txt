@@ -20,3 +20,4 @@ python-dateutil==2.7.3
 PyTweening==1.0.3
 pytz==2018.5
 six==1.11.0
+selenium==3.14.0

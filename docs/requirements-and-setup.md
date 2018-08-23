@@ -3,6 +3,7 @@
 * Install tesseract 4.0.0-beta.1 as described [here](https://github.com/tesseract-ocr/tesseract/wiki/Compiling#macos)
 * pip3 install pyobjc-core
 * pip3 install pyobjc
+* install ActiveTcl from [here](https://tkdocs.com/tutorial/install.html)
 
 > **Windows 10 Pro requirements:**
 

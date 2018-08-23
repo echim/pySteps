@@ -12,5 +12,5 @@ class DefaultPaths(Enum):
     }
     DARWIN = {
         'APPLICATIONS': ['/Applications'],
-        'TESSERACT': ''
+        'TESSERACT': '/usr/local/bin/tesseract'
     }
